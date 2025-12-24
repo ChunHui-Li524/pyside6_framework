@@ -1,28 +1,23 @@
 from PySide6.QtCore import QObject, Signal
 from core.log_manager import LogManager
+from utils.singleton import SingletonBase
 
-class SignalManager(QObject):
+class SignalManager(QObject, SingletonBase):
     """
     信号管理器，提供全局的信号通信机制
     允许不同模块和组件之间通过信号进行通信，无需直接引用
     """
     
-    _instance = None
-    
-    def __new__(cls):
-        """单例模式"""
-        if cls._instance is None:
-            cls._instance = super(SignalManager, cls).__new__(cls)
-        return cls._instance
-    
     def __init__(self):
         """初始化信号管理器"""
-        if not hasattr(self, 'initialized'):
-            super().__init__()
-            self.logger = LogManager()
-            self._custom_signals = {}
-            self.initialized = True
-            self.logger.info("信号管理器初始化完成")
+        if hasattr(self, 'initialized'):
+            return
+            
+        super().__init__()
+        self.logger = LogManager()
+        self._custom_signals = {}
+        self.logger.info("信号管理器初始化完成")
+        self.initialized = True
         
         # 预定义的全局信号
         # UI相关信号

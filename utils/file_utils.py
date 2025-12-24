@@ -4,26 +4,21 @@ import json
 import yaml
 from datetime import datetime
 from core.log_manager import LogManager
+from utils.singleton import SingletonBase
 
-class FileUtils:
+class FileUtils(SingletonBase):
     """
     文件工具类，提供文件和目录操作的常用功能
     支持文件读写、目录操作、文件复制、移动、删除等功能
     """
     
-    _instance = None
-    
-    def __new__(cls):
-        """单例模式"""
-        if cls._instance is None:
-            cls._instance = super(FileUtils, cls).__new__(cls)
-        return cls._instance
-    
     def __init__(self):
         """初始化文件工具类"""
-        if not hasattr(self, 'initialized'):
-            self.logger = LogManager()
-            self.initialized = True
+        if hasattr(self, 'initialized'):
+            return
+            
+        self.logger = LogManager()
+        self.initialized = True
     
     def read_text_file(self, file_path, encoding='utf-8'):
         """读取文本文件

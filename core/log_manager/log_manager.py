@@ -1,44 +1,40 @@
 import logging
 import os
 from datetime import datetime
+import sys
+from utils.singleton import SingletonBase
 
-class LogManager:
+class LogManager(SingletonBase):
     """
     日志管理器，用于统一管理应用程序的日志输出
     支持控制台和文件输出，可配置日志级别
     """
     
-    _instance = None
-    
-    def __new__(cls):
-        """单例模式"""
-        if cls._instance is None:
-            cls._instance = super(LogManager, cls).__new__(cls)
-        return cls._instance
-    
     def __init__(self):
         """初始化日志管理器"""
-        if not hasattr(self, 'initialized'):
-            self.logger = logging.getLogger('PySide6Framework')
-            self.logger.setLevel(logging.DEBUG)  # 默认设置为DEBUG级别
+        if hasattr(self, 'initialized'):
+            return
             
-            # 创建logs目录
-            self.log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'logs')
-            if not os.path.exists(self.log_dir):
-                os.makedirs(self.log_dir)
-            
-            # 清除已有的handler
-            if self.logger.handlers:
-                for handler in self.logger.handlers:
-                    self.logger.removeHandler(handler)
-            
-            # 添加控制台handler
-            self._add_console_handler()
-            
-            # 添加文件handler
-            self._add_file_handler()
-            
-            self.initialized = True
+        self.logger = logging.getLogger('PySide6Framework')
+        self.logger.setLevel(logging.DEBUG)  # 默认设置为DEBUG级别
+        
+        # 创建logs目录
+        self.log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'logs')
+        if not os.path.exists(self.log_dir):
+            os.makedirs(self.log_dir)
+        
+        # 清除已有的handler
+        if self.logger.handlers:
+            for handler in self.logger.handlers:
+                self.logger.removeHandler(handler)
+        
+        # 添加控制台handler
+        self._add_console_handler()
+        
+        # 添加文件handler
+        self._add_file_handler()
+        
+        self.initialized = True
     
     def _add_console_handler(self):
         """添加控制台输出handler"""

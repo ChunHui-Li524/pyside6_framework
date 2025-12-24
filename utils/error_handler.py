@@ -1,25 +1,20 @@
 import traceback
 from core.log_manager import LogManager
+from utils.singleton import SingletonBase
 
-class ErrorHandler:
+class ErrorHandler(SingletonBase):
     """
     错误处理器，用于统一处理应用程序的异常和错误
     提供错误捕获、日志记录和异常转换功能
     """
     
-    _instance = None
-    
-    def __new__(cls):
-        """单例模式"""
-        if cls._instance is None:
-            cls._instance = super(ErrorHandler, cls).__new__(cls)
-        return cls._instance
-    
     def __init__(self):
         """初始化错误处理器"""
-        if not hasattr(self, 'initialized'):
-            self.logger = LogManager()
-            self.initialized = True
+        if hasattr(self, 'initialized'):
+            return
+            
+        self.logger = LogManager()
+        self.initialized = True
     
     def handle_exception(self, exception, context="", show_traceback=True):
         """处理异常

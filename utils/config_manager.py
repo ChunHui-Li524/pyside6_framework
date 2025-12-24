@@ -1,37 +1,32 @@
 import json
 import os
 from core.log_manager import LogManager
+from utils.singleton import SingletonBase
 
-class ConfigManager:
+class ConfigManager(SingletonBase):
     """
     配置管理器，用于处理应用程序配置的读取和保存
     支持JSON格式的配置文件操作
     """
     
-    _instance = None
-    
-    def __new__(cls):
-        """单例模式"""
-        if cls._instance is None:
-            cls._instance = super(ConfigManager, cls).__new__(cls)
-        return cls._instance
-    
     def __init__(self):
         """初始化配置管理器"""
-        if not hasattr(self, 'initialized'):
-            self.logger = LogManager()
-            self.config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config')
-            self.config_file = os.path.join(self.config_dir, 'app_config.json')
-            self.config_data = {}
+        if hasattr(self, 'initialized'):
+            return
             
-            # 创建配置目录
-            if not os.path.exists(self.config_dir):
-                os.makedirs(self.config_dir)
-                self.logger.info(f"创建配置目录: {self.config_dir}")
-            
-            # 加载配置文件
-            self.load_config()
-            self.initialized = True
+        self.logger = LogManager()
+        self.config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config')
+        self.config_file = os.path.join(self.config_dir, 'app_config.json')
+        self.config_data = {}
+        
+        # 创建配置目录
+        if not os.path.exists(self.config_dir):
+            os.makedirs(self.config_dir)
+            self.logger.info(f"创建配置目录: {self.config_dir}")
+        
+        # 加载配置文件
+        self.load_config()
+        self.initialized = True
     
     def load_config(self):
         """加载配置文件"""
