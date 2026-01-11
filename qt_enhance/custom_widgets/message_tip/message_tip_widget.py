@@ -76,7 +76,7 @@ class QMessageTip(QWidget):
         """
         self._timer.stop()
         super().close()
-        del RECORDER[self._index]
+        del RECORDER[QMessageTip._index]
 
     @staticmethod
     def information(text):
