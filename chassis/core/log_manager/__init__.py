@@ -3,8 +3,8 @@
 日志管理器模块，提供自定义的日志管理功能
 """
 
-from .qt_handler import QtLogHandler
-from .log_manager import LogManager
+from chassis.core.log_manager.qt_handler import QtLogHandler
+from chassis.core.log_manager.log_manager import LogManager
 
 # 创建全局日志管理器实例
 log_manager = LogManager()

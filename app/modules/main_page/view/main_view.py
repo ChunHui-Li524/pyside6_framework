@@ -2,7 +2,7 @@ from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
                              QPushButton, QLineEdit, QTextEdit, QGroupBox,
                              QFormLayout, QMessageBox)
 from PySide6.QtCore import Signal, Slot, Qt
-from core.log_manager import LogManager
+from chassis.core.log_manager import LogManager
 
 class MainView(QWidget):
     """

@@ -4,12 +4,12 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
 from PySide6.QtCore import QTranslator, Qt
 
 # 导入框架模块
-from core.log_manager import LogManager
-from core.services import ExampleService
-from modules.main_page import MainController, MainView
-from utils.config_manager import ConfigManager
-from utils.error_handler import ErrorHandler
-from qt_enhance.signal_manager import SignalManager
+from chassis.core.log_manager import LogManager
+from chassis.core.services import ExampleService
+from app.modules.main_page import MainController, MainView
+from chassis.utils.config_manager import ConfigManager
+from chassis.utils.error_handler import ErrorHandler
+from chassis.qt_enhance.signal_manager import SignalManager
 
 
 class App(QMainWindow):

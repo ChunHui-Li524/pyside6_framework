@@ -1,4 +1,4 @@
-from core.services.base_service import BaseService
+from chassis.core.services.base_service import BaseService
 
 class ExampleService(BaseService):
     """

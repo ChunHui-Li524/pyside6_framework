@@ -1,5 +1,6 @@
 from PySide6.QtCore import QObject
-from .example_event import ExampleEvent
+from chassis.core.events.example_event import ExampleEvent
+
 
 class EventBus(QObject):
     def __init__(self):
@@ -18,6 +19,7 @@ class EventBus(QObject):
     @property
     def example(self):
         return self.get_event('example')
+
 
 # 实例化全局事件总线
 event_bus = EventBus()

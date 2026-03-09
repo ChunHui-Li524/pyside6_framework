@@ -1,4 +1,4 @@
-from core.log_manager import LogManager
+from chassis.core.log_manager import LogManager
 
 class BaseService:
     """

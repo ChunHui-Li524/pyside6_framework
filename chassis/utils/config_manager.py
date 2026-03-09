@@ -1,7 +1,7 @@
 import json
 import os
-from core.log_manager import LogManager
-from utils.singleton import SingletonBase
+from chassis.core.log_manager import LogManager
+from chassis.utils.singleton import SingletonBase
 
 class ConfigManager(SingletonBase):
     """

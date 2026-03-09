@@ -6,9 +6,9 @@
 import os
 import sys
 import json
-from core.log_manager import LogManager
-from utils.config_manager import ConfigManager
-from utils.file_utils import FileUtils
+from chassis.core.log_manager import LogManager
+from chassis.utils.config_manager import ConfigManager
+from chassis.utils.file_utils import FileUtils
 
 
 def initialize_app():

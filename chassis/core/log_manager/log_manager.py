@@ -10,7 +10,7 @@ from typing import Optional, Dict
 
 from PySide6.QtCore import QObject
 
-from .qt_handler import QtLogHandler
+from chassis.core.log_manager.qt_handler import QtLogHandler
 
 
 class LogManager:

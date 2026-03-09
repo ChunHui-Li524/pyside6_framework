@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QPushButton, QLineEdit, QTextEdit, QStyle
 from PySide6.QtCore import Signal, Slot, Qt, QTimer
 from PySide6.QtGui import QFont, QColor, QPalette
-from core.log_manager import LogManager
+from chassis.core.log_manager import LogManager
 
 class EnhancedButton(QPushButton):
     """

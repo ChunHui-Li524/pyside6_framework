@@ -1,6 +1,6 @@
 from PySide6.QtCore import QObject, Signal, Slot
-from core.log_manager import LogManager
-from core.services import ExampleService
+from chassis.core.log_manager import LogManager
+from chassis.core.services import ExampleService
 
 class MainController(QObject):
     """

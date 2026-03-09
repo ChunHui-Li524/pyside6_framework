@@ -1,6 +1,6 @@
 from PySide6.QtCore import QObject, Signal
-from core.log_manager import LogManager
-from utils.singleton import SingletonBase
+from chassis.core.log_manager import LogManager
+from chassis.utils.singleton import SingletonBase
 
 class SignalManager(QObject, SingletonBase):
     """
