@@ -38,6 +38,13 @@ class LogManager:
         
         # 配置主日志
         self.main_logger = self._setup_main_logger()
+
+    def __getattr__(self, name):
+        """
+        将未在 LogManager 上定义的属性访问代理到主日志器，
+        使得可以直接在 LogManager 实例上调用 debug/info/warning/error 等方法。
+        """
+        return getattr(self.main_logger, name)
     
     def _setup_main_logger(self) -> logging.Logger:
         """设置主日志器
